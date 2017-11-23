@@ -17,6 +17,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
  * Created by @thedancercodes on 23/11/2017.
  */
 
+// Specify AndroidJUnitRunner class as the default test runner
 @RunWith(AndroidJUnit4.class)
 public class OrderActivityBasicTest {
 
@@ -44,8 +45,29 @@ public class OrderActivityBasicTest {
         // Cost text view increased by the cost of one small cup of tea - $5 for a single cup
         onView(withId(R.id.quantity_text_view)).check(matches(withText("1")));
         onView(withId(R.id.cost_text_view)).check(matches(withText("$5.00")));
+    }
 
+    @Test
+    public void clickDecrementButton_ChangesQuantityAndCost() {
+        /**
+         *  Finish writing this test which will:
+         *     - Check that the initial quantity is zero
+         *     - Click on the decrement button
+         *     - Verify that the decrement button won't decrease the quantity 0 and cost below $0.00
+         */
 
+        // Check that the initial quantity variable is zero
+        onView((withId(R.id.cost_text_view))).check(matches(withText("$0.00")));
+
+        // Find the view & click on decrement button
+        onView((withId(R.id.decrement_button)))
+                .perform(click());
+
+        // Verify that the decrement button won't decrease the quantity below 0
+        onView(withId(R.id.quantity_text_view)).check(matches(withText("0")));
+
+        // Verify that the decrement button won't decrease cost below $0.00
+        onView(withId(R.id.cost_text_view)).check(matches(withText("$0.00")));
 
     }
 }
