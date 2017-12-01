@@ -20,12 +20,23 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:design:25.1.0'
-    compile 'com.android.support:support-annotations:25.1.0'
+    compile 'com.android.support:design:25.4.0'
+    compile 'com.android.support:support-annotations:25.4.0'
     compile 'com.google.android.gms:play-services-appindexing:9.8.0'
 
-    // Test Dependencies
-    androidTestCompile 'com.android.support:support-annotations:25.1.0'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
+    /**
+     * Test Dependencies
+     */
+
+    // Force usage of support annotations in the test app, since it is internally used by the runner module.
+    androidTestCompile 'com.android.support:support-annotations:25.4.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestCompile 'com.android.support.test:runner:1.0.0'
+    androidTestCompile 'com.android.support.test:rules:1.0.0'
+
+    // Espresso dependencies
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.0'
+    androidTestCompile 'com.android.support.test.espresso:espresso-intents:3.0.0'
     androidTestCompile 'junit:junit:4.12'
 }
